@@ -6,6 +6,11 @@
 2. Compared our datasets
 3. Implemented baseline model with semiyearly and monthly data (**best solution yet to be found**)
 
+Convert `.ipynb` to `.py` easily:
+```
+jupyter nbconvert --to script "notebook.ipynb"
+```
+
 ### Problems
 RF cannot work with `NaN` values. Therefore, some issues to solve:
 1. If we decide to drop rows with nan values, the dataframe becomes empty
