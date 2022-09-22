@@ -1,6 +1,10 @@
 # Sprint 2
 ### Step 1: Integrating the baseline models with the preprocessed datasets
 `This section will be updated based on the progress of the project`
+
+### Data configuration
+* X = all features which are not catgeorical or object or int/float
+* y = `next_prevalence`
 ### Progress
 1. Created .py file for our data prepartion functions 
 2. Compared our datasets
