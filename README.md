@@ -10,5 +10,6 @@
 RF cannot work with `NaN` values. Therefore, some issues to solve:
 1. If we decide to drop rows with nan values, the dataframe becomes empty
 2. If we remove only the columns which have nan values, we lose our target variable `next_prevalence` 
+3. There is no feature called `prevalence` in the new datasets. This is used for the predictions of the model
 
 A janky solution has been implemented within the files `Baseline Model on Monthly Preprocessed Data.ipynb` and `Baseline Model on Semiyearly Preprocessed Data.ipynb`.
