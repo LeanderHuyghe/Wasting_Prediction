@@ -3,7 +3,7 @@
 `This section will be updated based on the progress of the project`
 
 ### Data configuration
-* X = all features which are not catgeorical or object or int/float
+* X = all features which are not catgeorical or object. **Only int/float**
 * y = `next_prevalence`
 ### Progress
 1. Created .py file for our data prepartion functions 
