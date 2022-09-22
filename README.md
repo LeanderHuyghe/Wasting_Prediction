@@ -7,7 +7,7 @@
 3. Implemented baseline model with semiyearly and monthly data (**best solution yet to be found**)
 
 ### Problems
-RF cannot work with `NaN` values. Therefore, our problems to solve:
+RF cannot work with `NaN` values. Therefore, some issues to solve:
 1. If we decide to drop rows with nan values, the dataframe becomes empty
 2. If we remove only the columns which have nan values, we lose our target variable `next_prevalence` 
 
