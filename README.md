@@ -1,10 +1,19 @@
 # Sprint 2
 ### Step 1: Integrating the baseline models with the preprocessed datasets
 `This section will be updated based on the progress of the project`
+
+### Data configuration
+* X = all features which are not catgeorical or object. **Only int/float**
+* y = `next_prevalence`
 ### Progress
 1. Created .py file for our data prepartion functions 
 2. Compared our datasets
 3. Implemented baseline model with semiyearly and monthly data (**best solution yet to be found**)
+
+Convert `.ipynb` to `.py` easily:
+```
+jupyter nbconvert --to script "notebook.ipynb"
+```
 
 ### Problems
 RF cannot work with `NaN` values. Therefore, some issues to solve:
