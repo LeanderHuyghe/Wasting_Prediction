@@ -3,7 +3,7 @@
 `This section will be updated based on the progress of the project`
 
 ### Data configuration
-* X = all features which are not catgeorical or object. **Only int/float**
+* X = all features which are not catgeorical or object. Removed `increase`, `prevalence`, and `next_prevalence` 
 * y = `next_prevalence`
 ### Progress
 1. Created .py file for our data prepartion functions 
@@ -19,6 +19,6 @@ jupyter nbconvert --to script "notebook.ipynb"
 RF cannot work with `NaN` values. Therefore, some issues to solve:
 1. If we decide to drop rows with nan values, the dataframe becomes empty
 2. If we remove only the columns which have nan values, we lose our target variable `next_prevalence` 
-3. There is no feature called `prevalence` in the new datasets. This is used for the predictions of the model
 
-A janky solution has been implemented within the files `Baseline Model on Monthly Preprocessed Data.ipynb` and `Baseline Model on Semiyearly Preprocessed Data.ipynb`.
+
+
