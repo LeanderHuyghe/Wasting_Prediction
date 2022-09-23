@@ -4,10 +4,11 @@
 # In[1]:
 
 
-import pandas as pd
-import numpy as np
-from datetime import timedelta
 import datetime
+from datetime import timedelta
+
+import numpy as np
+import pandas as pd
 
 your_datapath = 'data/'
 
@@ -499,9 +500,6 @@ df_mon.to_csv("monthly_data.csv")
 
 
 # In[12]:
-
-
-import datacompy
 
 
 # In[ ]:
