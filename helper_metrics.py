@@ -178,7 +178,7 @@ def plot_time_series(timesteps, values, format='-', start=0, end=None, label=Non
       label : label to show on plot of values
     """
     # Plot the series
-    plt.plot(timesteps[start:end], values[start:end], format, label=label, figsize=(10, 7))
+    plt.plot(timesteps[start:end], values[start:end], format, label=label)
     plt.xlabel("Date")
     plt.ylabel("Next Prevalence")
     if label:
