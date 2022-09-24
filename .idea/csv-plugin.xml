@@ -17,6 +17,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\no_missings_mon.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\no_missings_sy.csv">
           <value>
             <Attribute>
