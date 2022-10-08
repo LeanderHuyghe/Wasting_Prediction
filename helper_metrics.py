@@ -7,6 +7,7 @@ pd.set_option('display.float_format', lambda x: '%.5f' % x)
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import roc_curve
 from sklearn.metrics import precision_recall_fscore_support
+from sklearn.preprocessing import MinMaxScaler
 import pickle
 import numpy as np
 import itertools
@@ -196,3 +197,85 @@ def count_missing_district_total(df):
     df = df.sum(axis=1)
     return df
 ########################################################################################################
+# TEST IMPUTATION PERFORMANCES
+def impute_score(df, features, imputer, scale):
+    """
+
+    Parameters
+    ----------
+    features: column to impute on
+    df: dataframe
+    imputer: type of sklearn imputer
+    scale: the range of values in the feature
+
+    Returns
+    -------
+
+    """
+
+    # Create copy of dataframe and only include continuous features
+    df_test = df.copy()
+    df_test = df_test.select_dtypes(exclude=["category","object"])
+    df_test = df_test.dropna(axis=0)
+
+    # Scale the dataframe
+    scaler = MinMaxScaler()
+    df_test_scaled = pd.DataFrame(scaler.fit_transform(df_test), columns = df_test.columns)
+
+    # Setting Feature column
+    features = [features]
+
+    # Set seed for reproducibility
+    np.random.seed(18)
+
+    #  Inserting NaN values into Experiment Group
+    for col in df_test_scaled[features]:
+        #     20% of the data will be removed (frac = 0.2)
+        # Rows may be selected more that once (replace = true) - only useful if you have more than one column in features
+        df_test_scaled.loc[df_test_scaled.sample(frac=0.2, replace=True).index, col] = np.nan
+
+
+    # Creating a list of indices
+    nan_cols = df_test_scaled[features]
+    nan_cols = nan_cols[nan_cols.isna().any(axis = 1)]
+    null_idx = list(nan_cols.index)
+
+    # Creating Answer key to compare future results against
+    answer_key = df_test.iloc[null_idx]
+
+    # Creating Answer key to compare future results against
+    answer_key = df_test.iloc[null_idx]
+
+    # Impute
+    df_test_imputed = pd.DataFrame(imputer.fit_transform(df_test_scaled), columns=df_test_scaled.columns)
+
+    # Invert scaling
+    inverse_df_test_imputed = pd.DataFrame(scaler.inverse_transform(df_test_imputed), columns=df_test_imputed.columns)
+
+     # Subsetting data to match that of our answer key
+    test = inverse_df_test_imputed.iloc[null_idx]
+
+    # Resetting indexes of test and answer_key for iteration
+    test = test.reset_index()
+    test.drop(['index'], axis=1, inplace=True)
+    answer_key = answer_key.reset_index()
+    answer_key.drop(['index'], axis=1, inplace=True)
+
+    # Calculate results
+    results = pd.DataFrame((round((answer_key - test), 3)))
+
+    # calculate RMSE
+    squared_terms = []
+    for col in results[features]:
+        for i in range(len(results)):
+            if results[col][i] != 0.00 or results[col][i] != -0.00:
+                error = results[col][i]
+                squared_error = error ** 2
+                squared_terms.append(squared_error)
+
+    num_nan = df_test_scaled.isna().sum().sum()
+    sum_sqr_err = sum(squared_terms)
+    mse = sum_sqr_err / num_nan
+    rmse = np.round(np.sqrt(mse),3)
+    #return pd.DataFrame({"RMSE": rmse, "SCALE": scale},index=[0])
+    print(f"RMSE for {features[0]}: {rmse} \nSCALE: {scale}")
