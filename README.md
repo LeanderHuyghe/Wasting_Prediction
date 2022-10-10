@@ -5,6 +5,6 @@
 * **NOT REQUIRED** Used LOCF for `total_population`. Only valeus from 2021-07-01 were missing, so I imputed the previous known population value for each district
 * kNN for columns: `ndvi`, `ipc`, `total_conflicts`, `price of water`
 * MICE for `price of water`
-* Spline imputation plus NOCB(next observation carried backward) for `total_conflicts`
+* Spline imputation + NOCB(next observation carried backward) for `total_conflicts`
 
 
