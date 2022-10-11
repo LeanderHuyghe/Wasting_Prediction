@@ -8,7 +8,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.metrics import roc_curve
 from sklearn.metrics import precision_recall_fscore_support
 from sklearn.preprocessing import MinMaxScaler
-import pickle
+import joblib
 import numpy as np
 import itertools
 
@@ -42,7 +42,9 @@ def roc_curve_gen(y_true, y_pred, model_name="Model"):
 
 ########################################################################################################
 # CONFUSION MATRIX
-def make_confusion_matrix(y_true, y_pred, classes=None, figsize=(10, 10), text_size=15, norm=False, savefig=False,
+def make_confusion_matrix(y_true, y_pred, classes=None, figsize=(10, 10), text_size=15, norm=False,
+                          title="Confusion Matrix",
+                          savefig=False,
                           cmap=plt.cm.Blues):
     """Makes a labelled confusion matrix comparing predictions and ground truth labels.
     If classes is passed, confusion matrix will be labelled, if not, integer class values
@@ -72,8 +74,10 @@ def make_confusion_matrix(y_true, y_pred, classes=None, figsize=(10, 10), text_s
     cm_norm = cm.astype("float") / cm.sum(axis=1)[:, np.newaxis]  # normalize it
     n_classes = cm.shape[0]  # find the number of classes we're dealing with
 
+
     # Plot the figure and make it pretty
     fig, ax = plt.subplots(figsize=figsize)
+    plt.grid(False)
     cax = ax.matshow(cm, cmap=cmap)  # colors will represent how 'correct' a class is, darker == better
     fig.colorbar(cax)
 
@@ -84,7 +88,7 @@ def make_confusion_matrix(y_true, y_pred, classes=None, figsize=(10, 10), text_s
         labels = np.arange(cm.shape[0])
 
     # Label the axes
-    ax.set(title="Confusion Matrix",
+    ax.set(title=title,
            xlabel="Predicted label",
            ylabel="True label",
            xticks=np.arange(n_classes),  # create enough axis slots for each class
@@ -129,7 +133,7 @@ def save_model(model, filename):
     -------
     saved pkl model
     """
-    pickle.dump(model, open(filename, 'wb'))
+    joblib.dump(model, filename)
 
 
 ########################################################################################################
