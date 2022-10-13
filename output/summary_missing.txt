@@ -1,0 +1,68 @@
+Number of columns: 23 
+List of columns: date, district, total population, Under-Five Population, GAM,
+ MAM, SAM, GAM Prevalence, SAM Prevalence, phase3plus_perc,
+ rainfall, ndvi_score, Price of water, Total alarms, n_conflict_total,
+ Average of centy, Average of centx, prevalence_6lag, next_prevalence, month,
+ increase, increase_numeric, district_encoded.
+
+Number of districts: 74 
+
+Missing values per column: 
+Price of water           287
+MAM                      143
+n_conflict_total          77
+increase_numeric          74
+increase                  74
+next_prevalence           74
+prevalence_6lag           74
+total population          72
+ndvi_score                 7
+phase3plus_perc            2
+month                      0
+Average of centx           0
+Average of centy           0
+date                       0
+Total alarms               0
+district                   0
+rainfall                   0
+SAM Prevalence             0
+GAM Prevalence             0
+SAM                        0
+GAM                        0
+Under-Five Population      0
+district_encoded           0
+
+Columns with missing values: 
+total population,MAM,phase3plus_perc,ndvi_score,Price of water,
+n_conflict_total,prevalence_6lag,next_prevalence,increase,increase_numeric.
+
+
+Number of dates missing for total popuation: 1
+Missing date: 2021-07-01T00:00:00.000000000
+
+Number of dates missing for ndvi_score: 7
+Number of districts for ndvi_score: 1
+Missing district: Banadir
+
+Number of dates missing for phase3plus_perc: 2
+Number of districts for phase3plus_perc: 1
+Missing district: Rab Dhuure
+
+Number of dates missing for next_prevalence: 2
+Number of districts for next_prevalence: 74
+Number of missing districts for each date: 
+{Timestamp('2020-01-01 00:00:00'): 2, Timestamp('2021-07-01 00:00:00'): 72}
+
+Number of dates missing for n_conflict_total: 9
+Number of districts for n_conflict_total: 32
+Number of missing districts for each date: 
+{Timestamp('2017-07-01 00:00:00'): 9, Timestamp('2018-01-01 00:00:00'): 12, Timestamp('2018-07-01 00:00:00'): 7, Timestamp('2019-01-01 00:00:00'): 11, Timestamp('2019-07-01 00:00:00'): 10, Timestamp('2020-01-01 00:00:00'): 7, Timestamp('2020-07-01 00:00:00'): 9, Timestamp('2021-01-01 00:00:00'): 6, Timestamp('2021-07-01 00:00:00'): 6}
+Number of missing dates for each district: 
+{'Adan Yabaal': 3, 'Sablaale': 3, 'Taleex': 1, 'Bandarbeyla': 5, 'Jariiban': 5, 'Burtinle': 5, 'Baki': 5, 'Saakow': 2, 'Xudun': 7, "Bu'aale": 1, 'Zeylac': 1, 'Owdweyne': 3, 'Eyl': 4, 'Ceel Dheer': 4, 'Lughaye': 4, 'Sheikh': 5, 'Cadale': 1, 'Caluula': 2, 'Kurtunwaarey': 2, 'Ceel Buur': 1, 'Laasqoray': 1, 'Caynabo': 1, 'Xarardheere': 1, 'Gebiley': 2, 'Galdogob': 1, 'Qandala': 1, 'Rab Dhuure': 1, 'Ceel Barde': 1, 'Qardho': 1, 'Borama': 1, 'Berbera': 1, 'Ceel Afweyn': 1}
+
+Number of dates missing for Price of water: 9
+Number of districts for Price of water: 35
+Number of missing districts for each date: 
+{Timestamp('2017-07-01 00:00:00'): 20, Timestamp('2018-01-01 00:00:00'): 34, Timestamp('2018-07-01 00:00:00'): 32, Timestamp('2019-01-01 00:00:00'): 33, Timestamp('2019-07-01 00:00:00'): 34, Timestamp('2020-01-01 00:00:00'): 35, Timestamp('2020-07-01 00:00:00'): 33, Timestamp('2021-01-01 00:00:00'): 33, Timestamp('2021-07-01 00:00:00'): 33}
+Number of missing dates for each district: 
+{'Buuhoodle': 9, 'Owdweyne': 9, 'Qandala': 9, 'Qardho': 9, 'Rab Dhuure': 6, 'Sablaale': 9, 'Berbera': 9, 'Sheikh': 9, 'Taleex': 9, 'Waajid': 8, 'Banadir': 8, 'Garbahaarey': 9, 'Doolow': 9, 'Ceel Buur': 9, 'Caynabo': 9, 'Cadaado': 9, 'Galdogob': 9, 'Baki': 9, 'Laasqoray': 6, 'Badhaadhe': 9, 'Cadale': 8, 'Burtinle': 8, 'Buur Hakaba': 8, 'Kurtunwaarey': 8, 'Eyl': 8, 'Hobyo': 8, 'Jalalaqsi': 8, 'Jariiban': 8, 'Ceel Afweyn': 8, 'Lughaye': 8, 'Tayeeglow': 8, 'Baraawe': 8, 'Xudun': 8, 'Balcad': 8, 'Afgooye': 3}
