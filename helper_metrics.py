@@ -11,6 +11,8 @@ from sklearn.preprocessing import MinMaxScaler
 import joblib
 import numpy as np
 import itertools
+from sklearn.experimental import enable_iterative_imputer
+from sklearn.impute import SimpleImputer, IterativeImputer, KNNImputer
 
 
 ########################################################################################################
@@ -73,7 +75,6 @@ def make_confusion_matrix(y_true, y_pred, classes=None, figsize=(10, 10), text_s
     cm = confusion_matrix(y_true, y_pred)
     cm_norm = cm.astype("float") / cm.sum(axis=1)[:, np.newaxis]  # normalize it
     n_classes = cm.shape[0]  # find the number of classes we're dealing with
-
 
     # Plot the figure and make it pretty
     fig, ax = plt.subplots(figsize=figsize)
@@ -179,19 +180,19 @@ def plot_time_series(timesteps, values, format='-', start=0, end=None, label=Non
         plt.legend(fontsize=14)  # make label bigger
     plt.grid(True)
 
+
 ########################################################################################################
 # CALCULATE MISSING VALUES
 def count_missing_district(df):
-
     """ This function shows the total number of missing values in each column
     per district"""
 
     df = df.groupby('district')
-    df = df.count().rsub(df.size(),axis=0)
+    df = df.count().rsub(df.size(), axis=0)
     return df
 
-def count_missing_district_total(df):
 
+def count_missing_district_total(df):
     """This function shows the total number of missing values per district
      """
 
@@ -200,31 +201,44 @@ def count_missing_district_total(df):
     df.reset_index()
     df = df.sum(axis=1)
     return df
+
+
 ########################################################################################################
 # TEST IMPUTATION PERFORMANCES
-def impute_score(df, features, imputer, scale):
+def impute_score(df, features, method, scale, n_neighbours=5):
     """
 
     Parameters
     ----------
-    features: column to impute on
-    df: dataframe
-    imputer: type of sklearn imputer
-    scale: the range of values in the feature
+    features (string): column to impute on
+    df (dataframe): dataframe
+    method (string): imputation strategy
+    n_neighbours (int): neighbours for knn and mice imputation
+    scale (string): the range of values in the feature
 
     Returns
     -------
-
+    Evaluation of imputation method for a particular feature
     """
+
+    strategy = {'mean': SimpleImputer(strategy='mean'),
+                'median': SimpleImputer(strategy='median'),
+                'knn': KNNImputer(n_neighbors=n_neighbours),
+                'mice': IterativeImputer(max_iter=100, n_nearest_features=n_neighbours, random_state=0)}
+
+    try:
+        imputer = strategy[method]
+    except:
+        raise ValueError(f"Method argument requires one of 'mean','median','knn','mice'. \n {method} is not a valid strategy.")
 
     # Create copy of dataframe and only include continuous features
     df_test = df.copy()
-    df_test = df_test.select_dtypes(exclude=["category","object"])
+    df_test = df_test.select_dtypes(exclude=["category", "object"])
     df_test = df_test.dropna(axis=0)
 
     # Scale the dataframe
     scaler = MinMaxScaler()
-    df_test_scaled = pd.DataFrame(scaler.fit_transform(df_test), columns = df_test.columns)
+    df_test_scaled = pd.DataFrame(scaler.fit_transform(df_test), columns=df_test.columns)
 
     # Setting Feature column
     features = [features]
@@ -234,18 +248,14 @@ def impute_score(df, features, imputer, scale):
 
     #  Inserting NaN values into Experiment Group
     for col in df_test_scaled[features]:
-        #     20% of the data will be removed (frac = 0.2)
-        # Rows may be selected more that once (replace = true) - only useful if you have more than one column in features
+        # 20% of the data will be removed (frac = 0.2)
+        # Rows may be selected more that once (replace = true)
         df_test_scaled.loc[df_test_scaled.sample(frac=0.2, replace=True).index, col] = np.nan
-
 
     # Creating a list of indices
     nan_cols = df_test_scaled[features]
-    nan_cols = nan_cols[nan_cols.isna().any(axis = 1)]
+    nan_cols = nan_cols[nan_cols.isna().any(axis=1)]
     null_idx = list(nan_cols.index)
-
-    # Creating Answer key to compare future results against
-    answer_key = df_test.iloc[null_idx]
 
     # Creating Answer key to compare future results against
     answer_key = df_test.iloc[null_idx]
@@ -256,7 +266,7 @@ def impute_score(df, features, imputer, scale):
     # Invert scaling
     inverse_df_test_imputed = pd.DataFrame(scaler.inverse_transform(df_test_imputed), columns=df_test_imputed.columns)
 
-     # Subsetting data to match that of our answer key
+    # Subset data to match that of our answer key
     test = inverse_df_test_imputed.iloc[null_idx]
 
     # Resetting indexes of test and answer_key for iteration
@@ -280,6 +290,6 @@ def impute_score(df, features, imputer, scale):
     num_nan = df_test_scaled.isna().sum().sum()
     sum_sqr_err = sum(squared_terms)
     mse = sum_sqr_err / num_nan
-    rmse = np.round(np.sqrt(mse),3)
-    #return pd.DataFrame({"RMSE": rmse, "SCALE": scale},index=[0])
-    print(f"RMSE for {features[0]}: {rmse} \nSCALE: {scale}")
+    rmse = np.round(np.sqrt(mse), 3)
+    # return pd.DataFrame({"RMSE": rmse, "SCALE": scale},index=[0])
+    print(f"RMSE for {method.upper()} imputation in {features[0]}: {rmse} \nSCALE: {scale}")
