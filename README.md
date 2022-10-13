@@ -1,5 +1,9 @@
-# README for Baseline.py
+# README for Pipeline
 
+
+
+
+# Below will be deleted but might use for type hints
 This document aims to give you context and explanation on how to use/set up and read Baseline.py. 
 Background
 	Zero Hunger Labs uses a random forest model to forecast GAM prevalence, you can find further information in "Predicting Wasting_Data challenge background document.pdf"
