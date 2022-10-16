@@ -229,7 +229,8 @@ def impute_score(df, features, method, scale, n_neighbours=5):
     try:
         imputer = strategy[method]
     except:
-        raise ValueError(f"Method argument requires one of 'mean','median','knn','mice'. \n {method} is not a valid strategy.")
+        raise ValueError(f'Method argument requires one of \'mean\',\'median\',\'knn\',\'mice\'. '
+                         f'\n {method} is not a valid strategy.')
 
     # Create copy of dataframe and only include continuous features
     df_test = df.copy()
