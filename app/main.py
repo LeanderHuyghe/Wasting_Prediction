@@ -1,3 +1,6 @@
+import time
+start_time = time.time()
+
 import pathlib
 import cleaning_districts as clean
 import aggregated_data as aggreg
@@ -14,3 +17,5 @@ clean.make_clean_district_data(initial_data,data_path)
 aggreg.make_aggrgated_csv(data_path)
 summary.writing_summary_missing_values(data_path + 'semiyearly_chosen_columns.csv', output_path + 'summary_missing.txt')
 imputing.running_all_imputations(data_path, 'semiyearly_chosen_columns.csv', output_path, 'imputed_semiyearly.csv')
+
+print("--- %s seconds ---" % (time.time() - start_time))
