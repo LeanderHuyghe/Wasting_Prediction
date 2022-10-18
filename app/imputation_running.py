@@ -21,9 +21,6 @@ def impute_values(df):
     knn_imputer = KNNImputer(n_neighbors=5)
     num_districts = len(df.district.unique())
 
-    df['n_conflict_total_KNN'] = df['n_conflict_total']
-    df['n_conflict_total_spline'] = df['n_conflict_total']
-
     for i in range(num_districts):
         # retrieve district name
         name = X.district[i]
@@ -37,20 +34,7 @@ def impute_values(df):
         # retrieve interpolated values at the required indices KNN
         conflict = imputed_data[index].values.tolist()
         # change value at the indexed location KNN
-        df.loc[index, 'n_conflict_total_KNN'] = conflict
-
-        # retrieve district name
-        name = df.district.unique()[i]
-        # retrieve conflict data spline
-        data2 = df[df.district == name]['n_conflict_total']
-        # retrieve indices of the missing values spline
-        index_spline = data2[data2.isna()].index.tolist()
-        # impute and fill any missing values with a reasonable estimate spline
-        data_spline = data2.interpolate("spline", order=1).bfill()
-        # retrieve interpolated values at the required indices spline
-        conflict = data_spline[index_spline].values.tolist()
-        # change value at the indexed location spline
-        df.loc[index, 'n_conflict_total_spline'] = conflict
+        df.loc[index, 'n_conflict_total'] = conflict
 
 
     # Redefine subset X for the rest of the imputations
@@ -58,7 +42,6 @@ def impute_values(df):
     knn_df = pd.DataFrame(knn_imputer.fit_transform(X), columns=X.columns)
     ndvi_score = knn_df["ndvi_score"]
     ipc = knn_df["phase3plus_perc"]
-    price_of_water_KNN = knn_df["Price of water"]
 
     # MICE imputation
     mice_imputer = IterativeImputer(n_nearest_features=5, max_iter=100).fit_transform(X)
@@ -67,19 +50,17 @@ def impute_values(df):
     # Change columns to imputed features
     df["ndvi_score"] = ndvi_score
     df["phase3plus_perc"] = ipc
-    df["price_of_water_KNN"] = price_of_water_KNN
-    df["price_of_water_MICE"] = price_of_water_MICE
+    df["price_of_water"] = price_of_water_MICE
 
     # Rename and dropped unwanted features
-    df = df.rename(columns={"ndvi_score": "ndvi", "phase3plus_perc": "ipc", "n_conflict_total_KNN": "conflicts_KNN",
-                            "n_conflict_total_spline": "conflicts_spline"})
-    df = df.drop(["Average of centx", "Average of centy", "Price of water", "n_conflict_total"], axis=1)
+    df = df.rename(columns={"ndvi_score": "ndvi", "phase3plus_perc": "ipc", "n_conflict_total": "conflicts"})
+    df = df.drop(["Average of centx", "Average of centy", "Price of water", "MAM"], axis=1)
 
     return df
 
 
 
-def running_all_imputations(data_path, df_csv_name, outputs_path, new_df_csv_name):
+def imputations_and_visulisations(data_path, df_csv_name, outputs_path, new_df_csv_name):
     """
     This function initializez a dataframe and runs all the imputations and creates the plots
     :param data_path: path to folder of data
@@ -92,14 +73,12 @@ def running_all_imputations(data_path, df_csv_name, outputs_path, new_df_csv_nam
 
     plots.correlation_heatmap_missing(df, outputs_path)
     plots.plot_original_conflict_districts(df, outputs_path)
-    plots.plot_original_price_of_water_MICE(df, outputs_path)
+    plots.plot_original_price_of_water(df, outputs_path)
 
     df = impute_values(df)
 
-    plots.plot_imputed_conflict_districts_spline(df, outputs_path)
     plots.plot_imputed_conflict_districts_knn(df, outputs_path)
     plots.plot_imputed_price_of_water_MICE(df, outputs_path)
-    plots.plot_imputed_price_of_water_knn(df, outputs_path)
     plots.plot_correlation(df, outputs_path)
 
     df.to_csv(data_path + new_df_csv_name)

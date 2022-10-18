@@ -1,0 +1,134 @@
+Evaluation of different imputation methods for PRICE OF WATER
+RMSE for MEAN imputation in Price of water: 12.053 
+SCALE: 2-100
+RMSE for MEDIAN imputation in Price of water: 11.645 
+SCALE: 2-100
+RMSE for KNN imputation in Price of water: 10.247 
+SCALE: 2-100
+RMSE for MICE imputation in Price of water: 12.115 
+SCALE: 2-100
+
+Evaluation of different imputation methods for NDVI
+RMSE for MEAN imputation in ndvi_score: 0.091 
+SCALE: 0 - 0.61
+RMSE for MEDIAN imputation in ndvi_score: 0.089 
+SCALE: 0 - 0.61
+RMSE for KNN imputation in ndvi_score: 0.042 
+SCALE: 0 - 0.61
+RMSE for MICE imputation in ndvi_score: 0.041 
+SCALE: 0 - 0.61
+
+Evaluation of different imputation methods for IPC
+RMSE for MEAN imputation in phase3plus_perc: 0.09 
+SCALE: 0 - 0.58
+RMSE for MEDIAN imputation in phase3plus_perc: 0.091 
+SCALE: 0 - 0.58
+RMSE for KNN imputation in phase3plus_perc: 0.087 
+SCALE: 0 - 0.58
+RMSE for MICE imputation in phase3plus_perc: 0.075 
+SCALE: 0 - 0.58
+
+Evaluation of different imputation methods for CONFLICTS
+RMSE for MEAN imputation in n_conflict_total: 5.815 
+SCALE: 1-8
+RMSE for MEDIAN imputation in n_conflict_total: 6.174 
+SCALE: 1-8
+RMSE for KNN imputation in n_conflict_total: 4.196 
+SCALE: 1-8
+RMSE for MICE imputation in n_conflict_total: 4.924 
+SCALE: 1-8
+SPLINE interpolation n_conflict_total
+Average RMSE for district-wise spline interpolation for conflicts: 2.413
+
+Test district-wise KNN imputation
+Average RMSE for district-wise KNN imputation for conflicts: 0.825
+
+SPLINE interpolation n_conflict_total pe district
+RMSE for SPLINE imputation in Luuq is: 0.823
+RMSE for SPLINE imputation in Buur Hakaba is: 1.014
+RMSE for SPLINE imputation in Marka is: 7.608
+RMSE for SPLINE imputation in Buuhoodle is: 0.819
+RMSE for SPLINE imputation in Burco is: 0.786
+RMSE for SPLINE imputation in Qansax Dheere is: 0.977
+RMSE for SPLINE imputation in Bulo Burto is: 1.857
+RMSE for SPLINE imputation in Qoryooley is: 1.864
+RMSE for SPLINE imputation in Bossaso is: 2.179
+RMSE for SPLINE imputation in Belet Xaawo is: 0.49
+RMSE for SPLINE imputation in Belet Weyne is: 3.6
+RMSE for SPLINE imputation in Tayeeglow is: 0.545
+RMSE for SPLINE imputation in Baraawe is: 2.19
+RMSE for SPLINE imputation in Waajid is: 1.037
+RMSE for SPLINE imputation in Wanla Weyn is: 1.225
+RMSE for SPLINE imputation in Banadir is: 20.364
+RMSE for SPLINE imputation in Cabudwaaq is: 0.797
+RMSE for SPLINE imputation in Laas Caanood is: 2.925
+RMSE for SPLINE imputation in Gaalkacyo is: 2.31
+RMSE for SPLINE imputation in Garbahaarey is: 1.291
+RMSE for SPLINE imputation in Garoowe is: 1.049
+RMSE for SPLINE imputation in Doolow is: 0.298
+RMSE for SPLINE imputation in Diinsoor is: 1.04
+RMSE for SPLINE imputation in Hargeysa is: 0.545
+RMSE for SPLINE imputation in Dhuusamarreeb is: 1.984
+RMSE for SPLINE imputation in Hobyo is: 1.247
+RMSE for SPLINE imputation in Ceerigaabo is: 1.044
+RMSE for SPLINE imputation in Iskushuban is: 0.593
+RMSE for SPLINE imputation in Ceel Waaq is: 0.609
+RMSE for SPLINE imputation in Jalalaqsi is: 1.359
+RMSE for SPLINE imputation in Jamaame is: 1.437
+RMSE for SPLINE imputation in Jilib is: 0.692
+RMSE for SPLINE imputation in Jowhar is: 2.934
+RMSE for SPLINE imputation in Kismaayo is: 4.513
+RMSE for SPLINE imputation in Cadaado is: 0.649
+RMSE for SPLINE imputation in Balcad is: 2.816
+RMSE for SPLINE imputation in Baidoa is: 4.801
+RMSE for SPLINE imputation in Baardheere is: 1.521
+RMSE for SPLINE imputation in Afmadow is: 2.39
+RMSE for SPLINE imputation in Badhaadhe is: 1.295
+RMSE for SPLINE imputation in Afgooye is: 11.055
+RMSE for SPLINE imputation in Xudur is: 2.79
+
+
+Test district-wise KNN imputation pe district
+RMSE for SPLINE imputation in Luuq is: 0.077
+RMSE for SPLINE imputation in Buur Hakaba is: 0.378
+RMSE for SPLINE imputation in Marka is: 2.632
+RMSE for SPLINE imputation in Buuhoodle is: 0.218
+RMSE for SPLINE imputation in Burco is: 0.054
+RMSE for SPLINE imputation in Qansax Dheere is: 0.222
+RMSE for SPLINE imputation in Bulo Burto is: 0.344
+RMSE for SPLINE imputation in Qoryooley is: 0.632
+RMSE for SPLINE imputation in Bossaso is: 1.636
+RMSE for SPLINE imputation in Belet Xaawo is: 0.353
+RMSE for SPLINE imputation in Belet Weyne is: 1.004
+RMSE for SPLINE imputation in Tayeeglow is: 0.166
+RMSE for SPLINE imputation in Baraawe is: 1.096
+RMSE for SPLINE imputation in Waajid is: 0.119
+RMSE for SPLINE imputation in Wanla Weyn is: 0.306
+RMSE for SPLINE imputation in Banadir is: 4.039
+RMSE for SPLINE imputation in Cabudwaaq is: 0.377
+RMSE for SPLINE imputation in Laas Caanood is: 1.945
+RMSE for SPLINE imputation in Gaalkacyo is: 0.915
+RMSE for SPLINE imputation in Garbahaarey is: 0.399
+RMSE for SPLINE imputation in Garoowe is: 0.35
+RMSE for SPLINE imputation in Doolow is: 0.2
+RMSE for SPLINE imputation in Diinsoor is: 0.248
+RMSE for SPLINE imputation in Hargeysa is: 0.801
+RMSE for SPLINE imputation in Dhuusamarreeb is: 1.352
+RMSE for SPLINE imputation in Hobyo is: 0.663
+RMSE for SPLINE imputation in Ceerigaabo is: 0.484
+RMSE for SPLINE imputation in Iskushuban is: 0.453
+RMSE for SPLINE imputation in Ceel Waaq is: 0.818
+RMSE for SPLINE imputation in Jalalaqsi is: 0.345
+RMSE for SPLINE imputation in Jamaame is: 0.783
+RMSE for SPLINE imputation in Jilib is: 0.326
+RMSE for SPLINE imputation in Jowhar is: 1.624
+RMSE for SPLINE imputation in Kismaayo is: 1.003
+RMSE for SPLINE imputation in Cadaado is: 0.238
+RMSE for SPLINE imputation in Balcad is: 0.689
+RMSE for SPLINE imputation in Baidoa is: 0.474
+RMSE for SPLINE imputation in Baardheere is: 0.334
+RMSE for SPLINE imputation in Afmadow is: 0.792
+RMSE for SPLINE imputation in Badhaadhe is: 0.598
+RMSE for SPLINE imputation in Afgooye is: 3.392
+RMSE for SPLINE imputation in Xudur is: 1.766
+
