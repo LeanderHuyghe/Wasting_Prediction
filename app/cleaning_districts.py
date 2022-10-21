@@ -82,6 +82,9 @@ def update_districts(df):
         elif token1 == 'Adado':
             correct_district = 'Cadaado'
             new_series.append(correct_district)
+        elif token1 == 'El berde':
+            correct_district = 'Ceel Barde'
+            new_series.append(correct_district)
 
         #If district is not a known variant, apply levenshtein algo
         elif token1 not in districts:
