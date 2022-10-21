@@ -5,20 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b2f5cf9-fb32-47d1-8109-a44cf5c62a7a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Wasting_Prediction.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Wasting_Prediction.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aggregated csvs with intendent columns .ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Aggregated csvs with intendent columns .ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/FSNAU_riskfactors.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/FSNAU_riskfactors.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/admissions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/admissions.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/conflict.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/conflict.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/ipc.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/ipc.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/ipc2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/ipc2.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/locations.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/locations.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/mon_ipc.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/mon_ipc.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/mon_ipc2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/mon_ipc2.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/mon_prevalence_estimates.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/mon_prevalence_estimates.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/monthly_chosen_columns.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/monthly_chosen_columns.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/prevalence_estimates.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/prevalence_estimates.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/semiyearly_chosen_columns.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/semiyearly_chosen_columns.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Histogram Gradient Boosting.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Histogram Gradient Boosting.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
