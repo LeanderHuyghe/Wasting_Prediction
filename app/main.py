@@ -7,6 +7,7 @@ import aggregated_data as aggreg
 import summary_missing_values as summary
 import imputation_running as imputing
 import imputation_evaluation as evaluation
+import baseline_model as model
 
 current_path = str(pathlib.Path(__file__).parent.resolve())
 project_path = current_path[:-4]
@@ -20,5 +21,6 @@ summary.writing_summary_missing_values(data_path + 'semiyearly_chosen_columns.cs
 evaluation.evaluating_imputations(data_path + 'semiyearly_chosen_columns.csv', output_path + 'evaluation_imputations.txt')
 imputing.imputations_and_visulisations(data_path, 'semiyearly_chosen_columns.csv', output_path, 'imputed_semiyearly.csv')
 
+model.run_baseline_model(data_path, 'imputed_semiyearly.csv')
 
 print("--- %s seconds ---" % (time.time() - start_time))
