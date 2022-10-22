@@ -87,7 +87,6 @@ RMSE for SPLINE imputation in Badhaadhe is: 1.295
 RMSE for SPLINE imputation in Afgooye is: 11.055
 RMSE for SPLINE imputation in Xudur is: 2.79
 
-
 Test district-wise KNN imputation pe district
 RMSE for SPLINE imputation in Luuq is: 0.077
 RMSE for SPLINE imputation in Buur Hakaba is: 0.378
