@@ -27,7 +27,7 @@ def run_baseline_model(data_path, df_csv_name):
     :param df_csv_name: name of csv
     :return: prints the normal data
     """
-    df = pd.read_csv(data_path + df_csv_name, parse_dates=['date']).drop(['Unnamed: 0', 'Under-Five Population'],
+    df = pd.read_csv(data_path + df_csv_name, parse_dates=['date']).drop(['Unnamed: 0', 'Under-Five Population','district_encoded'],
                                                                          axis=1)
     df.dropna(inplace=True)
 
