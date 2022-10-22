@@ -1,4 +1,5 @@
 import time
+
 start_time = time.time()
 
 import pathlib
@@ -15,11 +16,13 @@ initial_data = project_path + "\\data_initial\\"
 data_path = project_path + "\\data\\"
 output_path = project_path + "\\output\\"
 
-clean.make_clean_district_data(initial_data,data_path)
+clean.make_clean_district_data(initial_data, data_path)
 aggreg.make_aggrgated_csv(data_path)
 summary.writing_summary_missing_values(data_path + 'semiyearly_chosen_columns.csv', output_path + 'summary_missing.txt')
-evaluation.evaluating_imputations(data_path + 'semiyearly_chosen_columns.csv', output_path + 'evaluation_imputations.txt')
-imputing.imputations_and_visulisations(data_path, 'semiyearly_chosen_columns.csv', output_path, 'imputed_semiyearly.csv')
+evaluation.evaluating_imputations(data_path + 'semiyearly_chosen_columns.csv',
+                                  output_path + 'evaluation_imputations.txt')
+imputing.imputations_and_visulisations(data_path, 'semiyearly_chosen_columns.csv', output_path,
+                                       'imputed_semiyearly.csv')
 
 model.run_baseline_model(data_path, 'imputed_semiyearly.csv')
 
