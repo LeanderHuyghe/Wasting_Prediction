@@ -1,7 +1,7 @@
 library(VIM)
 library(magrittr)
 
-dataset <- read.csv("data/semiyearly_chosen_columns.csv")
+dataset <- read.csv("C:/Users/lonew/OneDrive/Email attachments/Documents/GitHub/Wasting_Prediction/data/semiyearly_chosen_columns.csv")
 dataset <- subset(dataset,select=-c(X,MAM))
 dataset <- subset(dataset,select=c(Price.of.water,n_conflict_total,phase3plus_perc_x,ndvi_score,next_prevalence,
  increase, increase_numeric))
