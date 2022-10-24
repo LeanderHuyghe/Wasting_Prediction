@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import time
 
 districts = ['Adan Yabaal', 'Afgooye', 'Afmadow', 'Baardheere', 'Badhaadhe', 'Baidoa',
  'Baydhaba/Bardaale', 'Baki', 'Balcad', 'Banadir', 'Bandarbeyla', 'Baraawe', 'Belet Weyne', 'Belet Weyne (Mataban)','Belet Xaawo',
@@ -116,13 +117,14 @@ def district_name_cleaning (in_path, out_path):
     df.to_csv(out_path)
 
 
-def make_clean_district_data (initial_data, data_path):
+def make_clean_district_data (initial_data, data_path, start_time):
     """
     This function loads the necessary csvs and calls the necessary functions in order to clean the district names and
     then store th enew csvs in the data folder
     :param initial_data: the path to the folder to read the csv
     :param data_path: the path for the output folder
     """
+    print("Cleaning district names ...")
 
     district_name_cleaning(initial_data + 'admissions.csv', data_path + 'admissions.csv')
     district_name_cleaning(initial_data + 'FSNAU_riskfactors.csv', data_path + 'FSNAU_riskfactors.csv')
@@ -131,3 +133,6 @@ def make_clean_district_data (initial_data, data_path):
     district_name_cleaning(initial_data + 'conflict.csv', data_path + 'conflict.csv')
     district_name_cleaning(initial_data + 'locations.csv', data_path + 'locations.csv')
     district_name_cleaning(initial_data + 'ipc.csv', data_path + 'ipc.csv')
+
+    print(f"District names were cleaned and the new CSVs are stored in the data folder. ",
+          f"({round((time.time() - start_time),2)}s)\n")

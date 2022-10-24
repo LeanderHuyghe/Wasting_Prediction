@@ -1,12 +1,15 @@
 import pandas as pd
+import time
 
 
-def writing_summary_missing_values(data_path, output):
+def writing_summary(data_path, output, start_time):
     """
     This function takes as input the path to the csv and writes the summary into a text file at the output path
     :param data_path:
     :param output:
     """
+    print("Writing summary missing values ...")
+
     df = pd.read_csv(data_path, parse_dates=['date']).drop('Unnamed: 0', axis=1)
 
     summary = open(output, 'w')
@@ -104,3 +107,6 @@ def writing_summary_missing_values(data_path, output):
     summary.write(f'Number of missing dates for each district: \n{di_datesc}\n')
 
     summary.close()
+
+    print(f"The missing values summary was written in a text file and saved in the output folder. ",
+          f"({round((time.time() - start_time),2)}s)\n")

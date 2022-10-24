@@ -1,17 +1,19 @@
 from helper_metrics import impute_score, spline_conflicts, distric_wise_KNN
 import pandas as pd
 import numpy as np
+import time
 
 import warnings
 warnings.filterwarnings("ignore")
 
-def evaluating_imputations(path_df, path_out):
+def evaluating_imputations(path_df, path_out, start_time):
     """
     This functions runs the evaluations for the imputation methods and outputs the results in a txt file
     :param path_df: path to the dataframe
     :param path_out: path to the output file
     :return: doesn't return anything
     """
+    print("Evaluating the imputation methods ...")
 
     df = pd.read_csv(path_df, parse_dates=['date']).drop('Unnamed: 0', axis=1)
 
@@ -66,3 +68,6 @@ def evaluating_imputations(path_df, path_out):
     evaluation.write(f'{evaluation_spline_conflicts}\n')
     evaluation.write(f'Test district-wise KNN imputation pe district\n')
     evaluation.write(f'{evaluation_knn}\n')
+
+    print(f"The imputation evaluation was written in a text file and saved in the output folder. ",
+          f"({round((time.time() - start_time), 2)}s)\n")

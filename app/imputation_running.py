@@ -3,6 +3,7 @@ from sklearn.experimental import enable_iterative_imputer
 from sklearn.impute import IterativeImputer
 from sklearn.impute import KNNImputer
 import create_plots as plots
+import time
 
 
 def impute_values(df):
@@ -60,7 +61,7 @@ def impute_values(df):
 
 
 
-def imputations_and_visulisations(data_path, df_csv_name, outputs_path, new_df_csv_name):
+def imputations_and_visulisations(data_path, df_csv_name, outputs_path, new_df_csv_name, start_time):
     """
     This function initializez a dataframe and runs all the imputations and creates the plots
     :param data_path: path to folder of data
@@ -68,6 +69,7 @@ def imputations_and_visulisations(data_path, df_csv_name, outputs_path, new_df_c
     :param outputs_path: path to outputs folder
     :return: nothing, instead it stores the new csv with imputed columns
     """
+    print("Imputing the missing values ...")
 
     df = pd.read_csv(data_path + df_csv_name, parse_dates=['date']).drop('Unnamed: 0', axis=1)
 
@@ -82,3 +84,6 @@ def imputations_and_visulisations(data_path, df_csv_name, outputs_path, new_df_c
     plots.plot_correlation(df, outputs_path)
 
     df.to_csv(data_path + new_df_csv_name)
+
+    print(f"'{new_df_csv_name}' has the imputed missing values and the visualizations were saved in the output folder.",
+          f"({round((time.time() - start_time), 2)}s)\n")

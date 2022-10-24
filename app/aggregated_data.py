@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import time
 
 
 def make_district_df_semiyearly(datapath, district_name):
@@ -128,12 +129,14 @@ def make_combined_df_semiyearly(datapath):
     return df
 
 
-def make_aggrgated_csv(datapath):
+def make_aggrgated_csv(datapath, start_time):
     """
     This function takes a datpath and creates the aggregated csv with chosen column from that path
     :param datapath: the data folder path
     :return: doen't return but stores csv at path
     """
+    print("Aggregating datasets ...")
+
     # Create the semiyearly dataframe for all districts
     df = make_combined_df_semiyearly(datapath)
 
@@ -144,3 +147,6 @@ def make_aggrgated_csv(datapath):
     df = df[df.district.isin(drop_districts) == False].copy()
 
     df.to_csv(datapath + 'semiyearly_chosen_columns.csv')
+
+    print(f"Datasets were aggregated and the new CSV was saved as 'semiyearly_chosen_columns.csv'. ",
+          f"({round((time.time() - start_time),2)}s)\n")
