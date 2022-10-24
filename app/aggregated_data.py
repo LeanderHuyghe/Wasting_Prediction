@@ -129,7 +129,7 @@ def make_combined_df_semiyearly(datapath):
     return df
 
 
-def make_aggrgated_csv(datapath, start_time):
+def make_aggrgated_csv(datapath, csv_name, start_time):
     """
     This function takes a datpath and creates the aggregated csv with chosen column from that path
     :param datapath: the data folder path
@@ -146,7 +146,7 @@ def make_aggrgated_csv(datapath, start_time):
     drop_districts = ['Saakow/Salagle', 'Badhan', 'Laasqoray/Badhan', 'Belet Weyne (Mataban)', 'Baydhaba/Bardaale']
     df = df[df.district.isin(drop_districts) == False].copy()
 
-    df.to_csv(datapath + 'semiyearly_chosen_columns.csv')
+    df.to_csv(datapath + csv_name)
 
-    print(f"Datasets were aggregated and the new CSV was saved as 'semiyearly_chosen_columns.csv'. ",
+    print(f"Datasets were aggregated and the new CSV was saved as '{csv_name}'. ",
           f"({round((time.time() - start_time),2)}s)\n")
