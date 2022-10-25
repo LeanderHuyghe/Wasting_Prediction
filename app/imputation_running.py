@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from sklearn.experimental import enable_iterative_imputer
 from sklearn.impute import IterativeImputer
 from sklearn.impute import KNNImputer
@@ -60,10 +61,52 @@ def impute_values(df):
     return df
 
 
+def impute_dummy(df, feature, index):
+    """
+    This function returns the dataframe with imputed vs actual data
+    :param df: dataframe we use
+    :param feature: the feature we look for
+    :param index: the index of actual data
+    :return: the dataframe where we know what is imputed or actual
+    """
+    data = df[['date','district','next_prevalence',feature]]
+    data['imputed'] = np.arange(0,len(data))
+    for i in range(len(data)):
+        if i in index:
+            data.loc[i, 'imputed'] = 'imputed'
+        else:
+            data.loc[i, 'imputed'] = 'actual'
+    return data
+
+
+def index_data(df):
+    """
+    This function gets the indexes of actual data for several features
+    :param df: teh dataframe form where we take index
+    :return: the 4 index lists
+    """
+    conflict_index = df[df['n_conflict_total'].isna() == True].index
+    ndvi_index = df[df['ndvi_score'].isna() == True].index
+    ipc_index = df[df['phase3plus_perc'].isna() == True].index
+    return (conflict_index, ndvi_index, ipc_index)
+
+
+def actual_vs_imputed_df(df, index_actual):
+    """
+    This function makes the dataframe assigns for the features the dataframes with actual vs real data
+    :param df: the dataframe that we start from
+    :param index_actual: the list of indices
+    :return: the 4 data frames
+    """
+    df_ndvi = impute_dummy(df, "ndvi", index_actual[1])
+    df_conflict = impute_dummy(df, "conflicts", index_actual[0])
+    df_ipc = impute_dummy(df, "ipc", index_actual[2])
+    return (df_ndvi, df_conflict, df_ipc)
+
 
 def imputations_and_visulisations(data_path, df_csv_name, outputs_path, new_df_csv_name, start_time):
     """
-    This function initializez a dataframe and runs all the imputations and creates the plots
+    This function initializes a dataframe and runs all the imputations and creates the plots
     :param data_path: path to folder of data
     :param df_csv_name: name of csv that we read as df
     :param outputs_path: path to outputs folder
@@ -72,12 +115,19 @@ def imputations_and_visulisations(data_path, df_csv_name, outputs_path, new_df_c
     print("Imputing the missing values ...")
 
     df = pd.read_csv(data_path + df_csv_name, parse_dates=['date']).drop('Unnamed: 0', axis=1)
+    index_actual = index_data(df)
 
     plots.correlation_heatmap_missing(df, outputs_path)
     plots.plot_original_conflict_districts(df, outputs_path)
     plots.plot_original_price_of_water(df, outputs_path)
+    plots.plot_bar_missing(df, outputs_path)
 
     df = impute_values(df)
+    df_ndvi, df_conlict, df_ipc = actual_vs_imputed_df(df, index_actual)
+
+    plots.scatter_ndvi(df_ndvi, outputs_path)
+    plots.scatter_conflicts(df_conlict, outputs_path)
+    plots.scatter_ipc(df_ipc, outputs_path)
 
     plots.plot_imputed_conflict_districts_knn(df, outputs_path)
     plots.plot_imputed_price_of_water_MICE(df, outputs_path)
