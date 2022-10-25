@@ -3,6 +3,7 @@ import numpy as np
 pd.set_option('display.float_format', lambda x: '%.5f' % x)
 from sklearn.impute import SimpleImputer, IterativeImputer, KNNImputer
 from sklearn.preprocessing import MinMaxScaler
+from sklearn.metrics import accuracy_score, precision_recall_fscore_support
 
 
 def impute_score(df, features, method, scale, n_neighbours=5):
@@ -230,3 +231,39 @@ def distric_wise_KNN(i, df):
     mse = sum_sqr_err / num_nan
     rmse = np.round(np.sqrt(mse), 3)
     return rmse
+
+def count_missing_district(df):
+    """ This function shows the total number of missing values in each column
+    per district"""
+
+    df = df.groupby('district')
+    df = df.count().rsub(df.size(), axis=0)
+    return df
+
+def count_missing_district_total(df):
+    """This function shows the total number of missing values per district
+     """
+
+    df = df.groupby('district')
+    df = df.count().rsub(df.size(), axis=0)
+    df.reset_index()
+    df = df.sum(axis=1)
+    return df
+
+def calculate_results(y_true, y_pred, average="weighted"):
+    """
+    Calculates model accuracy, precision, recall and f1 score of a binary classification model.
+    Args:
+        y_true: true labels in the form of a 1D array
+        y_pred: predicted labels in the form of a 1D array
+    Returns a dictionary of accuracy, precision, recall, f1-score.
+    """
+    # Calculate model accuracy
+    model_accuracy = accuracy_score(y_true, y_pred) * 100
+    # Calculate model precision, recall and f1 score using "weighted average
+    model_precision, model_recall, model_f1, _ = precision_recall_fscore_support(y_true, y_pred, average=average)
+    model_results = {"accuracy": model_accuracy,
+                     "precision": model_precision,
+                     "recall": model_recall,
+                     "f1": model_f1}
+    return model_results

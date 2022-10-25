@@ -26,7 +26,10 @@ def run_baseline_model(data_path, df_csv_name, start_time, atr_cv, atr_model):
     This function run the model from the baseline for all districts
     :param data_path: path to the dataframe
     :param df_csv_name: name of csv
-    :return: prints the normal data
+    :param start_time: start time of the function
+    :param atr_cv: attribute for whether cross-validation runs or not
+    :param atr_model: attribute for whether we load the model or not
+    :return: prints the results of the model
     """
     print("Running baseline model...")
 
@@ -146,10 +149,10 @@ def run_baseline_model(data_path, df_csv_name, start_time, atr_cv, atr_model):
     acc = accuracy_score(increase, predicted_increase)
 
     # Print model parameters
-    print('\tno. of trees: ' + str(best_model_trees) + '\n\tmax_depth: ' + str(best_model_depth) + '\n\tcolumns: ' + str(
+    print('\tno. of trees: ' + str(best_model_trees) + '\tmax_depth: ' + str(best_model_depth) + '\n\tcolumns: ' + str(
         best_model_columns))
 
     # Print model scores
-    print(f"\tMAE: {np.round(MAE, 4)}, Accuracy: {np.round(acc, 3) * 100}%")
+    print(f"\tMAE: {np.round(MAE, 4)}, Accuracy: {np.round(acc, 4) * 100}%")
 
-    print(f"Finished running the baseline model. ({round((time.time() - start_time), 2)}s)")
+    print(f"Finished running the baseline model. ({round((time.time() - start_time), 2)}s)\n")
