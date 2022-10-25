@@ -29,12 +29,12 @@ initial_data = project_path + "\\data_initial\\"
 data_path = project_path + "\\data\\"
 output_path = project_path + "\\output\\"
 
-# clean.make_clean_district_data(initial_data, data_path, time.time())
-# aggreg.make_aggrgated_csv(data_path, name_aggregated, time.time())
-# summary.writing_summary(data_path + name_aggregated, output_path + name_summary, time.time())
-# eval.evaluating_imputations(data_path + name_aggregated, output_path + name_evaluation, time.time())
-# imputing.imputations_and_visulisations(data_path, name_aggregated, output_path, name_imputations, time.time())
-# model.run_baseline_model(data_path, name_imputations, time.time(), validation_baseline, model_baseline)
+clean.make_clean_district_data(initial_data, data_path, time.time())
+aggreg.make_aggrgated_csv(data_path, name_aggregated, time.time())
+summary.writing_summary(data_path + name_aggregated, output_path + name_summary, time.time())
+eval.evaluating_imputations(data_path + name_aggregated, output_path + name_evaluation, time.time())
+imputing.imputations_and_visulisations(data_path, name_aggregated, output_path, name_imputations, time.time())
+model.run_baseline_model(data_path, name_imputations, time.time(), validation_baseline, model_baseline)
 hgbr.hgbr_semiyearly(data_path, name_aggregated, time.time(), validation_hgbr, model_hgbr, output_path)
 hgbr.hgbr_semiyearly_crop(data_path, name_aggregated_crop, time.time(), validation_hgbr, model_hgbr, output_path)
 
