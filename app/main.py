@@ -9,6 +9,7 @@ import imputation_running as imputing
 import imputation_evaluation as eval
 import baseline_model as model
 import hgbr
+from crop import make_crop_csvs
 
 validation_baseline = 0
 validation_hgbr = 0
@@ -29,14 +30,15 @@ initial_data = project_path + "\\data_initial\\"
 data_path = project_path + "\\data\\"
 output_path = project_path + "\\output\\"
 
-clean.make_clean_district_data(initial_data, data_path, time.time())
-aggreg.make_aggrgated_csv(data_path, name_aggregated, time.time())
-summary.writing_summary(data_path + name_aggregated, output_path + name_summary, time.time())
-eval.evaluating_imputations(data_path + name_aggregated, output_path + name_evaluation, time.time())
-imputing.imputations_and_visulisations(data_path, name_aggregated, output_path, name_imputations, time.time())
-model.run_baseline_model(data_path, name_imputations, time.time(), validation_baseline, model_baseline)
-hgbr.hgbr_semiyearly(data_path, name_aggregated, time.time(), validation_hgbr, model_hgbr, output_path)
-hgbr.hgbr_semiyearly_crop(data_path, name_aggregated_crop, time.time(), validation_hgbr, model_hgbr, output_path)
+clean.make_clean_district_data(initial_data, data_path)
+aggreg.make_aggrgated_csv(data_path, name_aggregated)
+summary.writing_summary(data_path + name_aggregated, output_path + name_summary)
+eval.evaluating_imputations(data_path + name_aggregated, output_path + name_evaluation)
+imputing.imputations_and_visulisations(data_path, name_aggregated, output_path, name_imputations)
+make_crop_csvs(data_path, name_imputations, name_aggregated)
+model.run_baseline_model(data_path, name_imputations, validation_baseline, model_baseline)
+hgbr.hgbr_semiyearly(data_path, name_aggregated, validation_hgbr, model_hgbr, output_path)
+hgbr.hgbr_semiyearly_crop(data_path, name_aggregated_crop, validation_hgbr, model_hgbr, output_path)
 
 
 print("--- %s seconds ---" % (time.time() - start_time))

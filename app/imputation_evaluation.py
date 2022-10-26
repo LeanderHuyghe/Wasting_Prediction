@@ -6,13 +6,14 @@ import time
 import warnings
 warnings.filterwarnings("ignore")
 
-def evaluating_imputations(path_df, path_out, start_time):
+def evaluating_imputations(path_df, path_out):
     """
     This functions runs the evaluations for the imputation methods and outputs the results in a txt file
     :param path_df: path to the dataframe
     :param path_out: path to the output file
     :return: doesn't return anything
     """
+    start_time = time.time()
     print("Evaluating the imputation methods ...")
 
     df = pd.read_csv(path_df, parse_dates=['date']).drop('Unnamed: 0', axis=1)

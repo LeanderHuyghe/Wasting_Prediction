@@ -129,12 +129,13 @@ def make_combined_df_semiyearly(datapath):
     return df
 
 
-def make_aggrgated_csv(datapath, csv_name, start_time):
+def make_aggrgated_csv(datapath, csv_name):
     """
     This function takes a datpath and creates the aggregated csv with chosen column from that path
     :param datapath: the data folder path
     :return: doen't return but stores csv at path
     """
+    start_time = time.time()
     print("Aggregating datasets ...")
 
     # Create the semiyearly dataframe for all districts

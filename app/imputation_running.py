@@ -60,7 +60,6 @@ def impute_values(df):
 
     return df
 
-
 def impute_dummy(df, feature, index):
     """
     This function returns the dataframe with imputed vs actual data
@@ -78,7 +77,6 @@ def impute_dummy(df, feature, index):
             data.loc[i, 'imputed'] = 'actual'
     return data
 
-
 def index_data(df):
     """
     This function gets the indexes of actual data for several features
@@ -89,7 +87,6 @@ def index_data(df):
     ndvi_index = df[df['ndvi_score'].isna() == True].index
     ipc_index = df[df['phase3plus_perc'].isna() == True].index
     return (conflict_index, ndvi_index, ipc_index)
-
 
 def actual_vs_imputed_df(df, index_actual):
     """
@@ -103,8 +100,7 @@ def actual_vs_imputed_df(df, index_actual):
     df_ipc = impute_dummy(df, "ipc", index_actual[2])
     return (df_ndvi, df_conflict, df_ipc)
 
-
-def imputations_and_visulisations(data_path, df_csv_name, outputs_path, new_df_csv_name, start_time):
+def imputations_and_visulisations(data_path, df_csv_name, outputs_path, new_df_csv_name):
     """
     This function initializes a dataframe and runs all the imputations and creates the plots
     :param data_path: path to folder of data
@@ -112,6 +108,7 @@ def imputations_and_visulisations(data_path, df_csv_name, outputs_path, new_df_c
     :param outputs_path: path to outputs folder
     :return: nothing, instead it stores the new csv with imputed columns
     """
+    start_time = time.time()
     print("Imputing the missing values ...")
 
     df = pd.read_csv(data_path + df_csv_name, parse_dates=['date']).drop('Unnamed: 0', axis=1)

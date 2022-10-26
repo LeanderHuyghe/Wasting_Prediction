@@ -117,13 +117,14 @@ def district_name_cleaning (in_path, out_path):
     df.to_csv(out_path)
 
 
-def make_clean_district_data (initial_data, data_path, start_time):
+def make_clean_district_data (initial_data, data_path):
     """
     This function loads the necessary csvs and calls the necessary functions in order to clean the district names and
     then store th enew csvs in the data folder
     :param initial_data: the path to the folder to read the csv
     :param data_path: the path for the output folder
     """
+    start_time = time.time()
     print("Cleaning district names ...")
 
     district_name_cleaning(initial_data + 'admissions.csv', data_path + 'admissions.csv')
@@ -133,6 +134,7 @@ def make_clean_district_data (initial_data, data_path, start_time):
     district_name_cleaning(initial_data + 'conflict.csv', data_path + 'conflict.csv')
     district_name_cleaning(initial_data + 'locations.csv', data_path + 'locations.csv')
     district_name_cleaning(initial_data + 'ipc.csv', data_path + 'ipc.csv')
+    district_name_cleaning(initial_data + 'production.csv', data_path + 'production.csv')
 
     print(f"District names were cleaned and the new CSVs are stored in the data folder. ",
           f"({round((time.time() - start_time),2)}s)\n")

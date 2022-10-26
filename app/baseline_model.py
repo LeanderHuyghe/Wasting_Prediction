@@ -21,7 +21,7 @@ def subsets(l):
     return subset_list
 
 
-def run_baseline_model(data_path, df_csv_name, start_time, atr_cv, atr_model):
+def run_baseline_model(data_path, df_csv_name, atr_cv, atr_model):
     """
     This function run the model from the baseline for all districts
     :param data_path: path to the dataframe
@@ -31,6 +31,7 @@ def run_baseline_model(data_path, df_csv_name, start_time, atr_cv, atr_model):
     :param atr_model: attribute for whether we load the model or not
     :return: prints the results of the model
     """
+    start_time = time.time()
     print("Running baseline model...")
 
     df = pd.read_csv(data_path + df_csv_name, parse_dates=['date']).drop(['Unnamed: 0', 'Under-Five Population','district_encoded'],
@@ -134,7 +135,7 @@ def run_baseline_model(data_path, df_csv_name, start_time, atr_cv, atr_model):
         clf.fit(Xtrain, ytrain)
     else:
         print("\tWe load the best model.")
-        clf = joblib.load(data_path + "best_model.joblib")
+        clf = joblib.load(data_path + "best_model_baseline.joblib")
     predictions = clf.predict(Xtest)
 
     # Calculate MAE

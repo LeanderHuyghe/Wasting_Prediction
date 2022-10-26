@@ -21,7 +21,7 @@ def subsets(l: object) -> object:
             subset_list.append(l[j: i])
     return subset_list
 
-def hgbr_semiyearly(data_path, df_csv_name, start_time, validation_hgbr, model_hgbr, output_path):
+def hgbr_semiyearly(data_path, df_csv_name, validation_hgbr, model_hgbr, output_path):
     """
     This function run the model from the baseline for all districts
     :param data_path: path to the dataframe
@@ -30,11 +30,15 @@ def hgbr_semiyearly(data_path, df_csv_name, start_time, validation_hgbr, model_h
     :param validation_hgbr: attribute for whether cross-validation runs or not
     :return: prints the results of the model
     """
+    start_time = time.time()
     print("Running HGBR model on semiyearly (unimputed) data...")
+
     df = pd.read_csv(data_path + df_csv_name).iloc[:,1:]
     y = df.next_prevalence.dropna()
     X = df.select_dtypes(exclude=["object", "category"]).iloc[:len(y)].drop(
-        ["next_prevalence", "MAM", "increase_numeric", "GAM Prevalence", "Under-Five Population"], axis=1)
+        ["next_prevalence", "MAM", "increase_numeric", "GAM Prevalence", "Under-Five Population",
+         "Average of centy", "Average of centx"], axis=1)
+
 
     num_trees_min = 31
     num_trees_max = 64
@@ -153,9 +157,9 @@ def hgbr_semiyearly(data_path, df_csv_name, start_time, validation_hgbr, model_h
           f"Precision: {np.round(scores['precision'],4)}, Recall: {np.round(scores['recall'],4)}, "
           f"F1 score: {np.round(scores['f1'],4)}")
 
-    print(f"Finished running the HGBR model. ({round((time.time() - start_time), 2)}s)")
+    print(f"Finished running the HGBR model. ({round((time.time() - start_time), 2)}s)\n")
 
-def hgbr_semiyearly_crop(data_path, df_csv_name, start_time, validation_hgbr, model_hgbr, output_path):
+def hgbr_semiyearly_crop(data_path, df_csv_name, validation_hgbr, model_hgbr, output_path):
     """
     This function run the model from the baseline for all districts
     :param data_path: path to the dataframe
@@ -164,7 +168,9 @@ def hgbr_semiyearly_crop(data_path, df_csv_name, start_time, validation_hgbr, mo
     :param validation_hgbr: attribute for whether cross-validation runs or not
     :return: prints the results of the model
     """
+    start_time = time.time()
     print("Running HGBR model on semiyearly (unimputed) data with crops...")
+
     df = pd.read_csv(data_path + df_csv_name).iloc[:,2:].drop(["Average of centx","Average of centy"],axis=1)
     y = df.next_prevalence.dropna()
     X = df.select_dtypes(exclude=["object", "category"]).iloc[:len(y)].drop(
@@ -287,4 +293,4 @@ def hgbr_semiyearly_crop(data_path, df_csv_name, start_time, validation_hgbr, mo
           f"Precision: {np.round(scores['precision'],4)}, Recall: {np.round(scores['recall'],4)}, "
           f"F1 score: {np.round(scores['f1'],4)}")
 
-    print(f"Finished running the HGBR model. ({round((time.time() - start_time), 2)}s)")
+    print(f"Finished running the HGBR model. ({round((time.time() - start_time), 2)}s)\n")

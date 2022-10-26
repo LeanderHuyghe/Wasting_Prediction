@@ -2,12 +2,13 @@ import pandas as pd
 import time
 
 
-def writing_summary(data_path, output, start_time):
+def writing_summary(data_path, output):
     """
     This function takes as input the path to the csv and writes the summary into a text file at the output path
     :param data_path:
     :param output:
     """
+    start_time = time.time()
     print("Writing summary missing values ...")
 
     df = pd.read_csv(data_path, parse_dates=['date']).drop('Unnamed: 0', axis=1)
