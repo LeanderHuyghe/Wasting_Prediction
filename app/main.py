@@ -19,6 +19,7 @@ model_baseline = 1
 model_baseline_crop = 1
 model_hgbr = 1
 model_hgbr_crop = 1
+run_imp_crop = 0
 
 name_aggregated = 'semiyearly_chosen_columns.csv'
 name_aggregated_crop = 'semiyearly_chosen_columns_with_crop.csv'
@@ -38,7 +39,7 @@ make_aggrgated_csv(data_path, name_aggregated)
 writing_summary(data_path + name_aggregated, output_path + name_summary)
 evaluating_imputations(data_path + name_aggregated, output_path + name_evaluation)
 imputations_and_visulisations(data_path, name_aggregated, output_path, name_imputations)
-make_crop_csvs(data_path, name_imputations, name_aggregated)
+make_crop_csvs(data_path, name_imputations, name_aggregated, name_aggregated_crop, name_imputations_crop, run_imp_crop)
 run_baseline_model(data_path, name_imputations, validation_baseline, model_baseline, output_path)
 run_baseline_model_crop(data_path, name_imputations_crop, validation_baseline_crop, model_baseline_crop, output_path)
 hgbr_semiyearly(data_path, name_aggregated, validation_hgbr, model_hgbr, output_path)
