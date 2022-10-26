@@ -169,7 +169,7 @@ def hgbr_semiyearly_crop(data_path, df_csv_name, validation_hgbr, model_hgbr, ou
     :return: prints the results of the model
     """
     start_time = time.time()
-    print("Running HGBR model on semiyearly (unimputed) data with crops...")
+    print("Running HGBR model on semiyearly (unimputed) data including crops...")
 
     df = pd.read_csv(data_path + df_csv_name).iloc[:,2:].drop(["Average of centx","Average of centy"],axis=1)
     y = df.next_prevalence.dropna()
@@ -282,7 +282,7 @@ def hgbr_semiyearly_crop(data_path, df_csv_name, validation_hgbr, model_hgbr, ou
 
     make_confusion_matrix(y_true=increase, y_pred=predicted_increase, path=output_path,
                           name="confusion_matrix_hgbr_semiyearly_crop.png", classes=["Increase", "Decrease"],
-                          title="Confusion Matrix for Histogram Gradient Boosting Model", figsize=(8, 8))
+                          title="Confusion Matrix for Histogram Gradient Boosting Model (with crop)", figsize=(8, 8))
 
     # Print model parameters
     print('\tno. of leaves: ' + str(best_model_trees) + '\tmax_depth: ' + str(best_model_depth) + '\n\tcolumns: ' +
@@ -293,4 +293,4 @@ def hgbr_semiyearly_crop(data_path, df_csv_name, validation_hgbr, model_hgbr, ou
           f"Precision: {np.round(scores['precision'],4)}, Recall: {np.round(scores['recall'],4)}, "
           f"F1 score: {np.round(scores['f1'],4)}")
 
-    print(f"Finished running the HGBR model. ({round((time.time() - start_time), 2)}s)\n")
+    print(f"Finished running the HGBR model (with crop). ({round((time.time() - start_time), 2)}s)\n")
