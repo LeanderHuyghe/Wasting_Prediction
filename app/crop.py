@@ -7,7 +7,7 @@ def add_imputed_crop_to_imputed_semi(df_semi, df_crop, path):
     This function adds the imputed data for the crops to the imputed semiyearly and also exports it to csv
     :param df_semi: imputed semiyearly df
     :param df_crop: imputed crop df
-    :param df_crop: path for the export
+    :param path: path for the export
     :return: doesn't return but saves the df to a CSV
     """
     df_imputed_semi_crop = df_semi.copy()
@@ -22,7 +22,7 @@ def add_crop_to_semi(df_semi, df_crop, path):
     This function adds the data for the crops to the semiyearly and also exports it to csv
     :param df_semi: aggregated semiyearly df
     :param df_crop: district cleaned production df
-    :param df_crop: path for the export
+    :param path: path for the export
     :return: doesn't return but saves the df to a CSV
     """
     df_crop = df_crop[df_crop['date'] >= '2017-01-01']
@@ -40,7 +40,6 @@ def make_crop_csvs(path, semi_imp, semi_agg):
     :param path: path to the data folder
     :param semi_imp: the name of the semiyearly imputed data
     :param semi_agg: the name of the semiyearly aggregated data
-    :param crop: the name of the production data
     :return: doesn't return anything
     """
     start_time = time.time()

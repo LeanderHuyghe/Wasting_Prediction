@@ -1,5 +1,5 @@
-import numpy as np
 import pandas as pd
+import numpy as np
 import time
 
 districts = ['Adan Yabaal', 'Afgooye', 'Afmadow', 'Baardheere', 'Badhaadhe', 'Baidoa',
@@ -14,17 +14,18 @@ districts = ['Adan Yabaal', 'Afgooye', 'Afmadow', 'Baardheere', 'Badhaadhe', 'Ba
 'Xarardheere', 'Xudun', 'Xudur', 'Zeylac']
 
 
-# Defining the district cleaning function
 def levenshteinDistanceDP(token1, token2):
-    '''
-    This function implements the levenshtein text similarity measure
-    and returns a numeric value representing the distance between two words
-    '''
+    """
+    This function implements the levenshtein text similarity measure &
+    returns a numeric value representing the distance between two words
+    :param token1: first word
+    :param token2: second word
+    :return: distance between tokens
+    """
     distances = np.zeros((len(token1) + 1, len(token2) + 1))
 
     for t1 in range(len(token1) + 1):
         distances[t1][0] = t1
-
     for t2 in range(len(token2) + 1):
         distances[0][t2] = t2
 
@@ -50,15 +51,15 @@ def levenshteinDistanceDP(token1, token2):
 
     return distances[len(token1)][len(token2)]
 
-
-# Defining the district name updating function
 def update_districts(df):
-    '''
+    """
     This function checks whether the district name is the standard.
     If it is not, then the word is corrected by known value or by levenshtein distance.
     It creates a list with all the standard districts and sets that list as district column.
     Uncomment print statements in last loop to see what districts changed by levenshtein algo.
-    '''
+    :param df: df on which we apply the checks and corrections
+    :return: corrected df
+    """
 
     new_series = []
     for token1 in df['district']:
@@ -100,9 +101,9 @@ def update_districts(df):
     df['district'] = new_series
     return df
 
-
 def district_name_cleaning (in_path, out_path):
     """
+    This function calls the necessary functions to get from teh path of an uncleaned csv to a clean df
     :param in_path: the path to read the csv
     :param out_path: the path for the output csv
     :return: store the new csv in out_path
@@ -116,13 +117,13 @@ def district_name_cleaning (in_path, out_path):
     df = update_districts(df)
     df.to_csv(out_path)
 
-
 def make_clean_district_data (initial_data, data_path):
     """
     This function loads the necessary csvs and calls the necessary functions in order to clean the district names and
     then store th enew csvs in the data folder
     :param initial_data: the path to the folder to read the csv
     :param data_path: the path for the output folder
+    :return: stores the df in the output paths
     """
     start_time = time.time()
     print("Cleaning district names ...")

@@ -1,11 +1,11 @@
-import pandas as pd
-import joblib
-from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error, accuracy_score
+from sklearn.ensemble import RandomForestRegressor
 from create_plots import make_confusion_matrix
 from helper_metrics import calculate_results
 from tqdm import tqdm
+import pandas as pd
 import numpy as np
+import joblib
 import time
 
 num_trees_min = 64
@@ -13,9 +13,12 @@ num_trees_max = 128
 depth_min = 2
 depth_max = 7
 
-
-# Function that returns every possible subset (except the empty set) of the input list l
 def subsets(l):
+    """
+    This function returns every possible subset (except the empty set) of the input list l
+    :param l: list for wich to return subsets
+    :return subset_list: list of subsets
+    """
     subset_list = []
     for i in range(len(l) + 1):
         for j in range(i):
@@ -29,6 +32,7 @@ def run_baseline_model(data_path, df_csv_name, atr_cv, atr_model, output_path):
     :param df_csv_name: name of csv
     :param atr_cv: attribute for whether cross-validation runs or not
     :param atr_model: attribute for whether we load the model or not
+    :param output_path: path to the output folder
     :return: prints the results of the model
     """
     start_time = time.time()
@@ -41,9 +45,6 @@ def run_baseline_model(data_path, df_csv_name, atr_cv, atr_model, output_path):
     if atr_cv == 1:
         print("\tRunning the cross-validation...")
         start_cv = time.time()
-        '''------------SECTION RANDOM FOREST CROSS VALIDATION--------------'''
-        # WARNING: this process can take some time, since there are a lot of hyperparameters to investigate. The search
-        # space can be manually reduced to speed up the process.
 
         # Create empty list to store model scores
         parameter_scores = []
@@ -53,12 +54,8 @@ def run_baseline_model(data_path, df_csv_name, atr_cv, atr_model, output_path):
                              'next_prevalence'])
         y = df['next_prevalence'].values
 
-
         for num_trees in tqdm(range(num_trees_min, num_trees_max)):
-
             for depth in range(depth_min, depth_max):
-
-                # Investigate every subset of explanatory variables
                 for features in subsets(X.columns):
                     # First CV split. The 99 refers to the first 3 observations for the 33 districts in the data.
                     Xtrain = X[:220][features].copy().values
@@ -135,13 +132,13 @@ def run_baseline_model(data_path, df_csv_name, atr_cv, atr_model, output_path):
         clf.fit(Xtrain, ytrain)
     else:
         print("\tWe load the best model.")
-        clf = joblib.load(data_path + "best_model_baseline.joblib")
+        clf = joblib.load(data_path + 'best_model_baseline.joblib')
     predictions = clf.predict(Xtest)
 
     # Generate boolean values for increase or decrease in prevalence. 0 if next prevalence is smaller than current
     # prevalence, 1 otherwise.
-    increase = np.where(df.iloc[365:]["next_prevalence"] < df.iloc[365:]["GAM Prevalence"], 0, 1)
-    predicted_increase = np.where(predictions < df.iloc[365:]["GAM Prevalence"], 0, 1)
+    increase = np.where(df.iloc[365:]['next_prevalence'] < df.iloc[365:]['GAM Prevalence'], 0, 1)
+    predicted_increase = np.where(predictions < df.iloc[365:]['GAM Prevalence'], 0, 1)
 
     # Calculate scores
     MAE = mean_absolute_error(ytest, predictions)
@@ -170,6 +167,7 @@ def run_baseline_model_crop(data_path, df_csv_name, atr_cv, atr_model, output_pa
     :param df_csv_name: name of csv that contains the imputed combination of semiyearly and crop
     :param atr_cv: attribute for whether cross-validation runs or not
     :param atr_model: attribute for whether we load the model or not
+    :param output_path: path to the output folder
     :return: prints the results of the model
     """
     start_time = time.time()
@@ -182,9 +180,6 @@ def run_baseline_model_crop(data_path, df_csv_name, atr_cv, atr_model, output_pa
     if atr_cv == 1:
         print("\tRunning the cross-validation...")
         start_cv = time.time()
-        '''------------SECTION RANDOM FOREST CROSS VALIDATION--------------'''
-        # WARNING: this process can take some time, since there are a lot of hyperparameters to investigate. The search
-        # space can be manually reduced to speed up the process.
 
         # Create empty list to store model scores
         parameter_scores = []
@@ -196,10 +191,7 @@ def run_baseline_model_crop(data_path, df_csv_name, atr_cv, atr_model, output_pa
 
 
         for num_trees in tqdm(range(num_trees_min, num_trees_max)):
-
             for depth in range(depth_min, depth_max):
-
-                # Investigate every subset of explanatory variables
                 for features in subsets(X.columns):
                     # First CV split. The 99 refers to the first 3 observations for the 33 districts in the data.
                     Xtrain = X[:220][features].copy().values
@@ -278,13 +270,13 @@ def run_baseline_model_crop(data_path, df_csv_name, atr_cv, atr_model, output_pa
         clf.fit(Xtrain, ytrain)
     else:
         print("\tWe load the best model.")
-        clf = joblib.load(data_path + "best_model_baseline_crop.joblib")
+        clf = joblib.load(data_path + 'best_model_baseline_crop.joblib')
     predictions = clf.predict(Xtest)
 
     # Generate boolean values for increase or decrease in prevalence. 0 if next prevalence is smaller than current
     # prevalence, 1 otherwise.
-    increase = np.where(df.iloc[365:]["next_prevalence"] < df.iloc[365:]["GAM Prevalence"], 0, 1)
-    predicted_increase = np.where(predictions < df.iloc[365:]["GAM Prevalence"], 0, 1)
+    increase = np.where(df.iloc[365:]['next_prevalence'] < df.iloc[365:]['GAM Prevalence'], 0, 1)
+    predicted_increase = np.where(predictions < df.iloc[365:]['GAM Prevalence'], 0, 1)
 
     # Calculate scores
     MAE = mean_absolute_error(ytest, predictions)

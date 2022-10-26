@@ -5,18 +5,10 @@ import time
 
 def make_district_df_semiyearly(datapath, district_name):
     """
-    Function that creates a pandas dataframe for a single district with columns for the baseline model with semiyearly entries
-
-    Parameters
-    ----------
-    datapath : string
-        Path to the datafolder
-    district_name : string
-        Name of the district
-
-    Returns
-    -------
-    df : pandas dataframe
+    This function takes a datpath and creates the aggregated csv with chosen column from that path
+    :param datapath: the data folder path
+    :param district_name: name of the district
+    :return df: aggregated semiyearly data for 1 district
     """
 
     # Read all relevant datasets
@@ -99,19 +91,11 @@ def make_district_df_semiyearly(datapath, district_name):
 
     return df
 
-
 def make_combined_df_semiyearly(datapath):
     """
-    Function that creates a pandas dataframe for all districts with columns for the baseline model with semiyearly entries
-
-    Parameters
-    ----------
-    datapath : string
-        Path to the datafolder
-
-    Returns
-    -------
-    df : pandas dataframe
+    This function takes a datpath and creates the aggregated csv with chosen column from that path
+    :param datapath: the data folder path
+    :return df: aggregated semiyearly data
     """
 
     prevdf = pd.read_csv(datapath + 'prevalence_estimates.csv', parse_dates=['date'])
@@ -128,13 +112,14 @@ def make_combined_df_semiyearly(datapath):
 
     return df
 
-
 def make_aggrgated_csv(datapath, csv_name):
     """
     This function takes a datpath and creates the aggregated csv with chosen column from that path
     :param datapath: the data folder path
-    :return: doen't return but stores csv at path
+    :param csv_name: name for the new aggregated CSV
+    :return: doesn't return but stores csv at path
     """
+
     start_time = time.time()
     print("Aggregating datasets ...")
 

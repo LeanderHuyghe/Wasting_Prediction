@@ -1,9 +1,9 @@
-import pandas as pd
-import numpy as np
 from sklearn.experimental import enable_iterative_imputer
 from sklearn.impute import IterativeImputer
 from sklearn.impute import KNNImputer
 import create_plots as plots
+import pandas as pd
+import numpy as np
 import time
 
 
@@ -17,7 +17,7 @@ def impute_values(df):
     df.MAM = df.GAM - df.SAM
 
     # Define a subset X that will only be used for conflict imputation
-    X = df.drop(["date", "increase", "Average of centx", "Price of water","Average of centy"], axis=1).copy()
+    X = df.drop(['date', 'increase', 'Average of centx', 'Price of water','Average of centy'], axis=1).copy()
 
     # KNN for conflicts (district-wise imputation)
     knn_imputer = KNNImputer(n_neighbors=5)
@@ -42,21 +42,21 @@ def impute_values(df):
     # Redefine subset X for the rest of the imputations
     X = df.drop(['date', 'district', 'Average of centy', 'Average of centx'], axis=1)
     knn_df = pd.DataFrame(knn_imputer.fit_transform(X), columns=X.columns)
-    ndvi_score = knn_df["ndvi_score"]
-    ipc = knn_df["phase3plus_perc"]
+    ndvi_score = knn_df['ndvi_score']
+    ipc = knn_df['phase3plus_perc']
 
     # MICE imputation
     mice_imputer = IterativeImputer(n_nearest_features=5, max_iter=100).fit_transform(X)
-    price_of_water_MICE = pd.DataFrame(mice_imputer, columns=X.columns)["Price of water"]
+    price_of_water_MICE = pd.DataFrame(mice_imputer, columns=X.columns)['Price of water']
 
     # Change columns to imputed features
-    df["ndvi_score"] = ndvi_score
-    df["phase3plus_perc"] = ipc
-    df["price_of_water"] = price_of_water_MICE
+    df['ndvi_score'] = ndvi_score
+    df['phase3plus_perc'] = ipc
+    df['price_of_water'] = price_of_water_MICE
 
     # Rename and dropped unwanted features
-    df = df.rename(columns={"ndvi_score": "ndvi", "phase3plus_perc": "ipc", "n_conflict_total": "conflicts"})
-    df = df.drop(["Average of centx", "Average of centy", "Price of water", "MAM"], axis=1)
+    df = df.rename(columns={'ndvi_score': 'ndvi', 'phase3plus_perc': 'ipc', 'n_conflict_total': 'conflicts'})
+    df = df.drop(['Average of centx', 'Average of centy', 'Price of water', 'MAM'], axis=1)
 
     return df
 
@@ -95,9 +95,9 @@ def actual_vs_imputed_df(df, index_actual):
     :param index_actual: the list of indices
     :return: the 4 data frames
     """
-    df_ndvi = impute_dummy(df, "ndvi", index_actual[1])
-    df_conflict = impute_dummy(df, "conflicts", index_actual[0])
-    df_ipc = impute_dummy(df, "ipc", index_actual[2])
+    df_ndvi = impute_dummy(df, 'ndvi', index_actual[1])
+    df_conflict = impute_dummy(df, 'conflicts', index_actual[0])
+    df_ipc = impute_dummy(df, 'ipc', index_actual[2])
     return (df_ndvi, df_conflict, df_ipc)
 
 def imputations_and_visulisations(data_path, df_csv_name, outputs_path, new_df_csv_name):
@@ -106,6 +106,7 @@ def imputations_and_visulisations(data_path, df_csv_name, outputs_path, new_df_c
     :param data_path: path to folder of data
     :param df_csv_name: name of csv that we read as df
     :param outputs_path: path to outputs folder
+    "param new_df_csv_name: name for saving the new df
     :return: nothing, instead it stores the new csv with imputed columns
     """
     start_time = time.time()
