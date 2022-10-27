@@ -36,16 +36,16 @@ The 6 names saved refer to th enames of 4 csvs and 2 text files. If you wish the
 
 
 ## Requirements
-  python==3.8.13
-  pandas==1.4.4
-  numpy==1.23.1
-  scikit-learn==1.1.2
-  scipy==1.9.1
-  matplotlib==3.5.2
-  missingno==0.4.2
-  seaborn==0.11.2
-  itertools==0.1_3
-  tqdm==4.64.1
-  joblib==1.1.0
+    python==3.8.13
+    pandas==1.4.4
+    numpy==1.23.1
+    scikit-learn==1.1.2
+    scipy==1.9.1
+    matplotlib==3.5.2
+    missingno==0.4.2
+    seaborn==0.11.2
+    itertools==0.1_3
+    tqdm==4.64.1
+    joblib==1.1.0
 
 You require datawig==0.2.0 for the imputation of crop data. However this has some dependencies that mess up the set up.
