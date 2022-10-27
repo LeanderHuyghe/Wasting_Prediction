@@ -1,33 +1,33 @@
 # README for Pipeline
 
-This document aims to explain how to use/set up and read the code or group 15.
+This document aims to explain how to use/set up and read the code for group 15.
 The required packages can be found listed under 'Requirements' at the end of this document.
 
-## Sructure of folders
+## Structure of folders
 
 - app (contains all the code - you need to run main.py)
 - data (contains processed CSV files and saved models)
 - data_initial (contains only CSVs provided by the course)
 - output (contains png and text files of the output)
 
-## Sructure of the code
+## Structure of the code
 
-The entiere code was structured such that only running main.py is necessary.
+The entire code was structured such that only running main.py is necessary.
 Each step of the process was saved in functions created in various python files that main reads. 
 
 main.py calls 10 functions from other python files.
-The ouput of the 10 functions can be foun din the ouyputs folder. While the scores of the models and the progression of the code can be seen in the program terminal.
+The output of the 10 functions can be found in the output folder. While the scores of the models and the progression of the code can be seen in the program terminal.
 
 
 ## How to set up (Run main.py)
-Make sure that the environment has the necessary packages specified in section Requirments
+Make sure that the environment has the necessary packages specified in the section Requirments
 
 There are 9 variables that you can change the values of. 
-- All the validation variables refer to whether the cross validation of the 4 models is run or skipped. We recomand running the code at least once without the cross validation. Running all the cross validations can take up to 8 hours. In order to run the cross validation of a model, you can change the value to 1
-- All the model variables refer to whether you load the presaved models or fir new ones. This task doesn't tak elong either way but it has been presaved to load the models. In order to fit the new models, you can change the value to 0
-- The run_imp_crop variable refers to running th ecrop imputation. This as been set to 0 due to the fact that managing to install the necessary requirments will be extremly difficult. The package instalation requires the various package downgrades and upgrades and is very difficult.
+- All the validation variables refer to whether the cross-validation of the 4 models is run or skipped. We recommend running the code at least once without cross-validation. Running all the cross-validations can take up to 8 hours. In order to run the cross-validation of a model, you can change the value to 1
+- All the model variables refer to whether you load the pre-saved models or run new ones. This task doesn't take long either way but it has been pre-saved to load the models. In order to fit the new models, you can change the value to 0
+- The run_imp_crop variable refers to running the crop imputation. This has been set to 0 due to the fact that managing to install the necessary requirements will be extremely difficult. The package installation requires various package downgrades and upgrades and is very difficult.
 
-The 6 names saved refer to th enames of 4 csvs and 2 text files. If you wish the output to be saved under different names then you can change these names.
+The 6 names saved refer to the names of 4 CSVs and 2 text files. If you wish the output to be saved under different names then you can change these names.
 
 ## Reading the results
 - All the figure and text files are saved in the output folder.
@@ -48,7 +48,7 @@ The 6 names saved refer to th enames of 4 csvs and 2 text files. If you wish the
     tqdm==4.64.1
     joblib==1.1.0
 
-You require datawig==0.2.0 for the imputation of crop data. However this has some dependencies that mess up the set up.
+You require datawig==0.2.0 for the imputation of crop data. However, this has some dependencies that mess up the setup.
 
 ### Running the imputation of crop data
-Since the set up for running th eimputationof crop data is very hard, youcan run it in Google Colab more easily. You can try such a run(although lengthy) at this link https://drive.google.com/drive/folders/1Yuq7v_lGaMhVcaR8zFtATXzL-afq1afU
+Since the setup for running the imputation of crop data is very hard, you can run it in Google Colab more easily. You can try such a run (although lengthy) at this link https://drive.google.com/drive/folders/1Yuq7v_lGaMhVcaR8zFtATXzL-afq1afU
