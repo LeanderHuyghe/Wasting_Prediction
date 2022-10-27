@@ -5,10 +5,10 @@ The required packages can be found listed under 'Requirements' at the end of thi
 
 ## Sructure of folders
 
-	app (contains all the code)
-	data (contains processed CSV files and saved models)
-	data_initial (contains only CSVs provided by the course)
-	output (contains png and text files of the output)
+- app (contains all the code)
+- data (contains processed CSV files and saved models)
+- data_initial (contains only CSVs provided by the course)
+- output (contains png and text files of the output)
 
 ## Sructure of the code
 
@@ -20,7 +20,7 @@ The ouput of the 10 functions can be foun din the ouyputs folder. While the scor
 
 
 ## How to set up
-Make sure that th eenvironment has the necessary packages specified in section Requirments
+Make sure that the environment has the necessary packages specified in section Requirments
 
 There are 9 variables that you can change the values of. 
 - All the validation variables refer to whether the cross validation of the 4 models is run or skipped. We recomand running the code at least once without the cross validation. Running all the cross validations can take up to 8 hours. In order to run the cross validation of a model, you can change the value to 1
@@ -30,9 +30,9 @@ There are 9 variables that you can change the values of.
 The 6 names saved refer to th enames of 4 csvs and 2 text files. If you wish the output to be saved under different names then you can change these names.
 
 ## Reading the results
-	All the figure and text files are saved in the output folder.
-	The results of the 4 models will be visible in the terminal.
-	The progress of the running of the code can be monitored in the terminal as well.
+- All the figure and text files are saved in the output folder.
+- The results of the 4 models will be visible in the terminal.
+- The progress of the running of the code can be monitored in the terminal as well.
 
 
 ## Requirements
