@@ -11,15 +11,15 @@ from summary_missing_values import writing_summary
 from aggregated_data import make_aggrgated_csv
 from crop import make_crop_csvs
 
-validation_baseline = 0
-validation_baseline_crop = 0
-validation_hgbr = 0
-validation_hgbr_crop = 0
-model_baseline = 1
-model_baseline_crop = 1
-model_hgbr = 1
-model_hgbr_crop = 1
-run_imp_crop = 0
+validation_baseline = 0                  # change value to 1 to run cross validation
+validation_baseline_crop = 0             # change value to 1 to run cross validation
+validation_hgbr = 0                      # change value to 1 to run cross validation
+validation_hgbr_crop = 0                 # change value to 1 to run cross validation
+model_baseline = 1                       # change value to 0 to not load the model
+model_baseline_crop = 1                  # change value to 0 to not load the model
+model_hgbr = 1                           # change value to 0 to not load the model
+model_hgbr_crop = 1                      # change value to 0 to not load the model
+run_imp_crop = 0                         # change value to 1 to run the crop implementation
 
 name_aggregated = 'semiyearly_chosen_columns.csv'
 name_aggregated_crop = 'semiyearly_chosen_columns_with_crop.csv'

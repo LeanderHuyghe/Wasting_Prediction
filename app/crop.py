@@ -60,4 +60,4 @@ def make_crop_csvs(path, semi_imp, semi_agg, name_agg, name_imp, run_imputations
 
     add_imputed_crop_to_imputed_semi(df_semi_imp, df_crop_imp, name_imp, path)
 
-    print(f"Finished the task sand the CSV are saved in the data folder. ({round((time.time() - start_time), 2)}s)\n")
+    print(f"Finished the tasks and the CSV are saved in the data folder. ({round((time.time() - start_time), 2)}s)\n")

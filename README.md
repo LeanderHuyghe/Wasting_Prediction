@@ -1,77 +1,55 @@
 # README for Pipeline
 
+This document aims to explain how to use/set up and read the code or group 15.
+The required packages can be found listed under 'Requirements' at the end of this document.
+
+## Sructure of folders
+
+	app (contains all the code)
+	data (contains processed CSV files and saved models)
+	data_initial (contains only CSVs provided by the course)
+	output (contains png and text files of the output)
+
+## Sructure of the code
+
+The entiere code was structured such that only running main.py is necessary.
+Each step of the process was saved in functions created in various python files that main reads. 
+
+main.py calls 10 functions from other python files.
+The ouput of the 10 functions can be foun din the ouyputs folder. While the scores of the models and the progression of the code can be seen in the program terminal.
 
 
-
-# Below will be deleted but might use for type hints
-This document aims to give you context and explanation on how to use/set up and read Baseline.py. 
-Background
-	Zero Hunger Labs uses a random forest model to forecast GAM prevalence, you can find further information in "Predicting Wasting_Data challenge background document.pdf"
-	The file "Baseline.py" contains a similar model implementation, where the main difference from ZHL model is in cross validation and evaluation methods
-	
-```
-You can see the required packages and i/Users/leanderhuyghe/Documents/Tue/DC3/Predictive_Model/data_and_model/Baseline.pyts versions listed on 'Requirements' at the end of this document
-```
-
-### How to read Baseline.py
-
-	The code is organized in six sections, namely:
-		IMPORTS
-		USER VARIABLE
-		FUNCTIONS
-		DATAFRAME CREATION
-		RANDOM FOREST CROSS VALIDATION
-		FINAL EVALUATION
-	All sections have comments to guide you on understanding what the code does (input, purpose, output), you can identified the comments as they are precced by the character #
-	There are 3 functions
-		1) Function that creates a pandas dataframe for a single district with columns for the baseline model with semiyearly entries
-			def make_district_df_semiyearly(datapath, district_name)
-
-		2) Function that combines the semiyearly dataset (from the function make_district_df_semiyearly) of all districts
-			def make_combined_df_semiyearly(datapath)
-			
-		3) Function that returns every possible subset (except the empty set) of the input list l, It is used to investigate every subset of explanatory variables
-			def subsets (l)
-	The calculations for random forest, cross validation, and its evaluation are made using python function 
-	The results of MAE and accuracy of the model are displayed as part of the section:FINAL EVALUATION,using print function
-	
-	
 ## How to set up
-	Be sure that the environment has the specifications described in section Requirements;
-	Adjust the path to your datafolder, see SECTION USER VARIABLE;
-	The function SECTION RANDOM FOREST CROSS VALIDATION can take processing time before it generates results, read the section before you run the code;
-	
-	
-## Example of a section
-	All sections are written as comments using the feature '''----SECTION  [name]  -----''', an example of imports section is showed below:
-	'''------------SECTION IMPORTS---------------------'''
-	import pandas as pd
-	import numpy as np
-	from sklearn.ensemble import RandomForestRegressor
-	from sklearn.metrics import mean_absolute_error, accuracy_score
-	
-## Example of a function
-Function that creates a pandas dataframe for a single district with columns for the baseline model with semiyearly entries. 
-    
-```
-def make_district_df_semiyearly(datapath, district_name):
-		"""
-		Function that creates a pandas dataframe for a single district with columns for the baseline model with semiyearly entries
-        """
-		Parameters
-		----------
-		datapath : string
-			Path to the datafolder
-		district_name : string
-			Name of the district
-			
-		Returns
-		-------
-		df: a dataframe
-```
+Make sure that th eenvironment has the necessary packages specified in section Requirments
+There are 9 variables that you can change the values of. 
+	All the validation variables refer to whether the cross validation of the 4 models is run or skipped. We recomand running the code at least once without the cross validation. Running all the cross validations can take up to 8 hours.
+	In order to run the cross validation of a model, you can change the value to 1
+
+	All the model variables refer to whether you load the presaved models or fir new ones. This task doesn't tak elong either way but it has been presaved to load the models.
+	In order to fit the new models, you can change the value to 0
+
+	The run_imp_crop variable refers to running th ecrop imputation. This as been set to 0 due to the fact that managing to install the necessary requirments will be extremly difficult. The package instalation requires the various package downgrades and upgrades and is very difficult.
+
+The 6 names saved refer to th enames of 4 csvs and 2 text files. If you wish the output to be saved under different names then you can change these names.
+
+## Reading the results
+	All the figure and text files are saved in the output folder.
+	The results of the 4 models will be visible in the terminal.
+	The progress of the running of the code can be monitored in the terminal as well.
+
 
 ## Requirements
-	matplotlib==3.5.1
-	numpy==1.22.4
-	pandas==1.3.3
-	scikit_learn==1.1.2
+python==3.8.13
+pandas==1.4.4
+numpy==1.23.1
+scikit-learn==1.1.2
+scipy==1.9.1
+matplotlib==3.5.2
+missingno==0.4.2
+seaborn==0.11.2
+itertools==0.1_3
+tqdm==4.64.1
+joblib==1.1.0
+
+You require datawig for the imputation of crop data. However thishas som edependencies that mess up the set up.
+datawig==0.2.0
