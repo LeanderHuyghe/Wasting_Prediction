@@ -5,7 +5,7 @@ The required packages can be found listed under 'Requirements' at the end of thi
 
 ## Sructure of folders
 
-- app (contains all the code)
+- app (contains all the code - you need to run main.py)
 - data (contains processed CSV files and saved models)
 - data_initial (contains only CSVs provided by the course)
 - output (contains png and text files of the output)
@@ -19,7 +19,7 @@ main.py calls 10 functions from other python files.
 The ouput of the 10 functions can be foun din the ouyputs folder. While the scores of the models and the progression of the code can be seen in the program terminal.
 
 
-## How to set up
+## How to set up (Run main.py)
 Make sure that the environment has the necessary packages specified in section Requirments
 
 There are 9 variables that you can change the values of. 
