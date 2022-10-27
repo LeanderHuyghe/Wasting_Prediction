@@ -21,14 +21,11 @@ The ouput of the 10 functions can be foun din the ouyputs folder. While the scor
 
 ## How to set up
 Make sure that th eenvironment has the necessary packages specified in section Requirments
+
 There are 9 variables that you can change the values of. 
-	All the validation variables refer to whether the cross validation of the 4 models is run or skipped. We recomand running the code at least once without the cross validation. Running all the cross validations can take up to 8 hours.
-	In order to run the cross validation of a model, you can change the value to 1
-
-	All the model variables refer to whether you load the presaved models or fir new ones. This task doesn't tak elong either way but it has been presaved to load the models.
-	In order to fit the new models, you can change the value to 0
-
-	The run_imp_crop variable refers to running th ecrop imputation. This as been set to 0 due to the fact that managing to install the necessary requirments will be extremly difficult. The package instalation requires the various package downgrades and upgrades and is very difficult.
+- All the validation variables refer to whether the cross validation of the 4 models is run or skipped. We recomand running the code at least once without the cross validation. Running all the cross validations can take up to 8 hours. In order to run the cross validation of a model, you can change the value to 1
+- All the model variables refer to whether you load the presaved models or fir new ones. This task doesn't tak elong either way but it has been presaved to load the models. In order to fit the new models, you can change the value to 0
+- The run_imp_crop variable refers to running th ecrop imputation. This as been set to 0 due to the fact that managing to install the necessary requirments will be extremly difficult. The package instalation requires the various package downgrades and upgrades and is very difficult.
 
 The 6 names saved refer to th enames of 4 csvs and 2 text files. If you wish the output to be saved under different names then you can change these names.
 
