@@ -49,3 +49,6 @@ The 6 names saved refer to th enames of 4 csvs and 2 text files. If you wish the
     joblib==1.1.0
 
 You require datawig==0.2.0 for the imputation of crop data. However this has some dependencies that mess up the set up.
+
+### Running the imputation of crop data
+Since the set up for running th eimputationof crop data is very hard, youcan run it in Google Colab more easily. You can try such a run(although lengthy) at this link https://drive.google.com/drive/folders/1Yuq7v_lGaMhVcaR8zFtATXzL-afq1afU
